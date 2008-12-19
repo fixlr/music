@@ -1,0 +1,12 @@
+Simple web interface for my mp3 collection.
+
+A simple combination of Sinatra and Soundmanager2 for personal use. Refer to 
+those two projects if you want to see where the real heavy lifting occurs.
+
+Sinatra: http://github.com/bmizerany/sinatra/tree/master
+Soundmanager2: http://www.schillmania.com/projects/soundmanager2/
+
+
+I was never happy with the speed of rendering large folders with Apache::MP3 and
+the like, and I refuse to split my collection into A-M, N-Z, etc as I have seen
+many people do.
