@@ -1,0 +1,48 @@
+<html>
+<head>
+	<title>MUSIC</title>
+	<script type="text/javascript" src="/scripts/soundmanager2.js"></script>
+	<script type="text/javascript" src="/scripts/page-player.js"></script>
+	<script type="text/javascript">
+		soundManager.url = '/';
+	</script>
+	<style type="text/css" media="screen">@import "/stylesheets/styles.css";</style>
+	<style type="text/css" media="screen">@import "/stylesheets/page-player.css";</style>
+</head>
+<body>
+	<div id="container">
+		<p id="back"><a href="/<%= params[:artist] %>">Back to <%= params[:artist] %></a></p>
+		<ul class="playlist">
+		<% @entries.each do |e| %>
+			<li><a href="/<%= params[:artist] %>/<%= params[:album] %>/<%= e %>"><%= e.sub('.mp3', '') %></a></li>
+		<% end %>
+		</ul>
+		<div id="control-template">
+		  <!-- control markup inserted dynamically after each link -->
+		  <div class="controls">
+		   <div class="statusbar">
+		    <div class="loading"></div>
+		     <div class="position"></div>
+
+		   </div>
+		  </div>
+		  <div class="timing">
+		   <div id="sm2_timing" class="timing-data">
+		    <span class="sm2_position">%s1</span> / <span class="sm2_total">%s2</span></div>
+		  </div>
+		  <div class="peak">
+
+		   <div class="peak-box"><span class="l"></span><span class="r"></span>
+		   </div>
+		  </div>
+		 </div>
+
+		 <div id="spectrum-container" class="spectrum-container">
+		  <div class="spectrum-box">
+		   <div class="spectrum"></div>
+		  </div>
+
+		 </div> 
+	</div>
+</body>
+</html>	

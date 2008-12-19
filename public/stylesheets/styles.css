@@ -1,0 +1,41 @@
+ul {
+ list-style-type:none;
+ margin:0px;
+ padding:0px;
+
+}
+
+ul li {
+ /* assume all items will be sounds rather than wait for onload etc. in this example.. may differ for your uses. */
+ position:relative;
+ display:block;
+ width:auto;
+ font-size:1em;
+ color:#666;
+ padding:0.25em 0.5em 0.25em 0.5em;
+ border:none;
+ letter-spacing:-1px; /* ZOMG WEB X.0. ;) */
+ background-color:#f9f9f9;
+ -webkit-transition-property: hover;
+ -webkit-transition: background-color 0.15s ease-in-out;
+}
+
+ul li a {
+ display:block;
+ text-decoration:none;
+ font-weight:normal;
+ color:#000;
+ font-size:120%;
+ outline:none;
+ position:relative;
+ z-index:2;
+ text-shadow: 0 0 0 #fff; /* stupid Safari "fat" font rendering tweak */
+}
+
+ul li:hover {
+ background-color:#ddd;
+}
+
+ul li:hover a {
+ color:#333;
+}

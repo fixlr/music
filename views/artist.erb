@@ -1,0 +1,6 @@
+<p id="back"><a href="/">Back to Index</a></p>
+<ul>
+<% @entries.each do |e| %>
+	<li><a href="/<%= params[:artist] %>/<%= e %>"><%= e %></a></li>
+<% end %>
+</ul>

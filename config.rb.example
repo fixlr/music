@@ -1,0 +1,12 @@
+configure :development do
+  # I run this using my iTunes Music folder during development.
+  MUSIC_BASE = ENV['HOME'] + '/Music/iTunes/iTunes Music'
+end
+
+configure :test do
+  MUSIC_BASE = File.dirname(__FILE__) + '/test/music'
+end
+
+configure :production do
+  MUSIC_BASE = '/path/to/your/music'
+end
