@@ -1,10 +1,10 @@
-require 'sinatra/lib/sinatra'
 require 'rubygems'
+require 'sinatra'
 
 Sinatra::Application.default_options.merge!(
   :run => false,
   :env => :production
 )
 
-require 'server.rb'
+require 'server'
 run Sinatra.application
