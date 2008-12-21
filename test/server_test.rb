@@ -2,7 +2,7 @@ require 'rubygems'
 require 'sinatra'
 require 'sinatra/test/unit'
 require 'test/unit'
-require File.dirname(__FILE__) + '/../server'
+require File.dirname(__FILE__) + '/../init'
 
 class Test::Unit::TestCase
   def self.test(name, &block)
