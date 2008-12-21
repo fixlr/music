@@ -1,9 +1,8 @@
-# music.rb
 require 'rubygems'
 require 'sinatra'
 
 # Defined in config.rb.  Use config.rb.example as a template.
-require 'config'
+require File.expand_path(File.dirname(__FILE__) + '/lib/config')
 
 helpers do
   # No funny business. Send 'em home if the path isn't found.
@@ -21,7 +20,7 @@ end
 
 get '/' do
   @entries = Dir.entries(MUSIC_BASE).reject {|e| e =~ /^\./}.sort
-  erb :index
+  erb :index, :views_directory => 'views'
 end
 
 get '/:artist/:album/:song.mp3' do
@@ -30,10 +29,10 @@ end
 
 get '/:artist/:album' do
   @entries = get_entries(MUSIC_BASE + "/#{params[:artist]}/#{params[:album]}")
-  erb :album, :layout => false
+  erb :album, :layout => false, :views_directory => 'views'
 end
 
 get '/:artist' do
   @entries = get_entries(MUSIC_BASE + "/#{params[:artist]}")
-  erb :artist
+  erb :artist, :views_directory => 'views'
 end
