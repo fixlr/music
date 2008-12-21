@@ -9,7 +9,7 @@ helpers do
   # No funny business. Send 'em home if the path isn't found.
   def get_entries(path)
     redirect '/' unless File.exist? path
-    Dir.entries(path).reject {|e| e =~ /^\./}
+    Dir.entries(path).reject {|e| e =~ /^\./}.sort
   end
   
   def get_mp3(path)
