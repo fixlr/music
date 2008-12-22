@@ -10,9 +10,10 @@
 	<style type="text/css" media="screen">@import "/stylesheets/page-player.css";</style>
 </head>
 <body>
+	<div id="album" style="width:250px;float:right;z-index:1;"><img src="/<%= params[:artist] %>/<%= params[:album] %>/album.jpg" width="250" height="250" alt="" /></div>
 	<div id="container">
 		<p id="back"><a href="/<%= params[:artist] %>" class="exclude">Back to <%= params[:artist] %></a></p>
-		<ul class="playlist">
+		<ul class="playlist" style="">
 		<% @entries.each do |e| %>
 			<li><a href="/<%= params[:artist] %>/<%= params[:album] %>/<%= e %>"><%= e.sub('.mp3', '') %></a></li>
 		<% end %>
