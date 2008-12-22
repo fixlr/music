@@ -1,23 +1,4 @@
-require 'rubygems'
-require 'sinatra'
-require 'sinatra/test/unit'
-require 'test/unit'
-require File.dirname(__FILE__) + '/../init'
-
-class Test::Unit::TestCase
-  def self.test(name, &block)
-    test_name = "test_#{name.gsub(/\s+/,'_')}".to_sym
-    defined = instance_method(test_name) rescue false
-    raise "#{test_name} is already defined in #{self}" if defined
-    if block_given?
-      define_method(test_name, &block)
-    else
-      define_method(test_name) do
-        flunk "No implementation provided for #{name}"
-      end
-    end
-  end
-end
+require File.join(File.dirname(__FILE__), 'test_helper')
 
 class MusicServerTest < Test::Unit::TestCase
   test 'get on /' do
