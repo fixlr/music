@@ -11,7 +11,7 @@
 </head>
 <body>
 	<div id="container">
-		<p id="back"><a href="/<%= params[:artist] %>">Back to <%= params[:artist] %></a></p>
+		<p id="back"><a href="/<%= params[:artist] %>" class="exclude">Back to <%= params[:artist] %></a></p>
 		<ul class="playlist">
 		<% @entries.each do |e| %>
 			<li><a href="/<%= params[:artist] %>/<%= params[:album] %>/<%= e %>"><%= e.sub('.mp3', '') %></a></li>
