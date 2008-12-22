@@ -1,3 +1,4 @@
+require 'uri'
 require 'rubygems'
 require 'sinatra'
 
@@ -15,12 +16,20 @@ helpers do
     throw :halt , '' unless File.exist? path
     IO.read(path)
   end
+  
+  def url_for(*args)
+    args.map {|e| URI.escape(e) }.join('/')
+  end
 end
 
 
 get '/' do
   @entries = Dir.entries(MUSIC_BASE).reject {|e| e =~ /^\./}.sort
-  erb :index, :views_directory => 'views'
+  erb :index
+end
+
+get '/:artist/:album/album.jpg' do
+  IO.read(File.join(MUSIC_BASE, params[:artist], params[:album], 'album.jpg'))
 end
 
 get '/:artist/:album/:song.mp3' do
@@ -28,11 +37,11 @@ get '/:artist/:album/:song.mp3' do
 end
 
 get '/:artist/:album' do
-  @entries = get_entries(MUSIC_BASE + "/#{params[:artist]}/#{params[:album]}")
-  erb :album, :layout => false, :views_directory => 'views'
+  @entries = get_entries(MUSIC_BASE + "/#{params[:artist]}/#{params[:album]}").reject {|e| e == 'album.jpg'}
+  erb :album, :layout => false
 end
 
 get '/:artist' do
   @entries = get_entries(MUSIC_BASE + "/#{params[:artist]}")
-  erb :artist, :views_directory => 'views'
+  erb :artist
 end
