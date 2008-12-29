@@ -10,12 +10,16 @@
 	<style type="text/css" media="screen">@import "/stylesheets/page-player.css";</style>
 </head>
 <body>
-	<div id="album" style="width:250px;float:right;z-index:1;"><img src="/<%= params[:artist] %>/<%= params[:album] %>/album.jpg" width="250" height="250" alt="" /></div>
+	<div id="album">
+		<img src="<%= url_for(params[:artist], params[:album], 'album.jpg')%>" width="250" height="250" alt="" />
+		<p><span class="label">Artist:</span> <%= params[:artist] %><br />
+		<span class="label">Album:</span> <%= params[:album] %></p>
+	</div>
 	<div id="container">
 		<p id="back"><a href="/<%= params[:artist] %>" class="exclude">Back to <%= params[:artist] %></a></p>
 		<ul class="playlist" style="">
-		<% @entries.each do |e| %>
-			<li><a href="/<%= params[:artist] %>/<%= params[:album] %>/<%= e %>"><%= e.sub('.mp3', '') %></a></li>
+		<% @entries.each do |song| %>
+			<li><a href="<%= url_for(params[:artist], params[:album], song) %>"><%= song.sub('.mp3', '') %></a></li>
 		<% end %>
 		</ul>
 		<div id="control-template">

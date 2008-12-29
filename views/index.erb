@@ -1,5 +1,5 @@
 <ul>
-<% @entries.each do |e| %>
-	<li><a href="/<%= e %>"><%= e %></a></li>
+<% @entries.each do |artist| %>
+	<li><a href="<%= url_for(artist) %>"><%= artist %></a></li>
 <% end %>
 </ul>
