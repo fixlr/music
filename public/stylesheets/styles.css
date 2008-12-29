@@ -1,3 +1,28 @@
+body {
+	margin-right: 2px;
+	margin-top: 2px;
+}
+div#album {
+	font-size: 14px;
+	float: right;
+	width: 250px;
+	z-index: 1;
+}
+
+div#album p {
+	margin: 0.5em 0 0 0;
+	padding: 0;
+}
+div#album p span.label {
+	display: block;
+	float: left;
+	clear: left;
+	font-weight: bold;
+	width: 43pt;
+}
+div#container {
+	margin-right: 259px;
+}
 ul {
  list-style-type:none;
  margin:0px;
