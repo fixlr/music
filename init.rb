@@ -38,8 +38,8 @@ get '/:artist/:album/album.jpg' do
   IO.read(File.join(MUSIC_BASE, params[:artist], params[:album], 'album.jpg'))
 end
 
-get '/:artist/:album/:song.mp3' do
-  get_mp3(MUSIC_BASE + "/#{params[:artist]}/#{params[:album]}/#{params[:song]}.mp3")
+get '/:artist/:album/:song' do
+  get_mp3(MUSIC_BASE + "/#{params[:artist]}/#{params[:album]}/#{params[:song]}")
 end
 
 get '/:artist/:album' do

@@ -14,7 +14,7 @@ class MusicServerTest < Test::Unit::TestCase
   end
   
   test 'get an /artist with funky characters' do
-    funky_uri = URI.escape '/Funky&'
+    funky_uri = URI.escape '/&,.#'
     get_it funky_uri
     assert_equal 200, @response.status
     assert_equal get_entries(MUSIC_BASE + URI.unescape(funky_uri)).to_s, @response.body
@@ -31,6 +31,13 @@ class MusicServerTest < Test::Unit::TestCase
     get_it '/Foo/Bar'
     assert_equal 200, @response.status
     assert_equal get_entries(MUSIC_BASE + '/Foo/Bar').to_s, @response.body
+  end
+
+  test 'get an /artist/album with funky characters' do
+    funky_uri = URI.escape '/&,.#/&,.#'
+    get_it funky_uri
+    assert_equal 200, @response.status
+    assert_equal get_entries(MUSIC_BASE + URI.unescape(funky_uri)).to_s, @response.body
   end
   
   test 'get on /artist/album does not exist' do
