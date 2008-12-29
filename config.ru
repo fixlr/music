@@ -1,4 +1,5 @@
 require 'rubygems'
+require File.dirname(__FILE__) + '/lib/sinatra_uri_char_fix'
 require 'sinatra'
 
 Sinatra::Application.default_options.merge!(
@@ -6,7 +7,7 @@ Sinatra::Application.default_options.merge!(
   :env => :production
 )
 
-log = File.new("sinatra.log", "w")
+log = File.new("sinatra.log", "a")
 STDOUT.reopen(log)
 STDERR.reopen(log)
 
