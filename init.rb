@@ -23,8 +23,13 @@ helpers do
     IO.read(path)
   end
   
+  def get_album_jpg(path)
+    throw :halt, IO.read(File.join(File.dirname(__FILE__), 'public', 'image', 'album2.jpg')) unless File.exist? path
+    IO.read(path)
+  end
+  
   def url_for(*args)
-    args.map {|e| URI.escape(e) }.join('/')
+    '/' + args.map {|e| URI.escape(e) }.join('/')
   end
 end
 
@@ -35,7 +40,7 @@ get '/' do
 end
 
 get '/:artist/:album/album.jpg' do
-  IO.read(File.join(MUSIC_BASE, params[:artist], params[:album], 'album.jpg'))
+  get_album_jpg(File.join(MUSIC_BASE, params[:artist], params[:album], 'album.jpg'))
 end
 
 get '/:artist/:album/:song' do
