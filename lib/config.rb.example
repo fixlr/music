@@ -4,9 +4,15 @@ configure :development do
 end
 
 configure :test do
+	# Set the views directory because Sinatra often cannot find the correct one.
+	set :views, File.join(File.dirname(__FILE__), '..', 'test', 'views')
+
   MUSIC_BASE = File.dirname(__FILE__) + '/test/music'
 end
 
 configure :production do
+	# Set the views directory because Sinatra often cannot find the correct one.
+	set :views, File.join(File.dirname(__FILE__), '..', 'views')
+
   MUSIC_BASE = '/path/to/your/music'
 end
