@@ -1,8 +1,9 @@
 require 'rubygems'
+require File.join(File.dirname(__FILE__), '..', 'lib', 'sinatra_uri_char_fix')
 require 'sinatra'
 require 'sinatra/test/unit'
 require 'test/unit'
-require File.dirname(__FILE__) + '/../init'
+require File.join(File.dirname(__FILE__), '..', 'init')
 
 Sinatra::Application.default_options.merge!(
   :env => :test,

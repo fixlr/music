@@ -1,5 +1,11 @@
 require 'uri'
 require 'rubygems'
+
+# I'm seeing some problems with special characters in artist/album/song names
+# that result in 404 errors with Sinatra. Overriding URI_CHAR fixes it (see 
+# accompanying tests). Not sure if there's a better way though...
+# Must be loaded before Sinatra or it will not work.
+require File.join(File.dirname(__FILE__), 'lib', 'sinatra_uri_char_fix')
 require 'sinatra'
 
 # Defined in config.rb.  Use config.rb.example as a template.
