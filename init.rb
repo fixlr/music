@@ -28,6 +28,10 @@ helpers do
     IO.read(path)
   end
   
+  def title
+    ['MUSIC', params[:artist], params[:album]].compact.join(': ')
+  end
+  
   def url_for(*args)
     '/' + args.map {|e| URI.escape(e) }.join('/')
   end
