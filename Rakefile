@@ -1,9 +1,12 @@
+require 'rake/testtask'
+
 desc "Run the music server"
 task :default do 
-  sh 'ruby init.rb'
+  ruby 'init.rb'
 end
 
-desc "Run all tests"
-task :test do
-  sh 'ruby test/*_test.rb'
+Rake::TestTask.new do |t|
+  t.libs << 'test'
+  t.test_files = FileList['test/*_test.rb']
+  t.verbose = true
 end
