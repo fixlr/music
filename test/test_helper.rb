@@ -4,6 +4,7 @@ require 'sinatra'
 require 'sinatra/test/unit'
 require 'test/unit'
 require File.join(File.dirname(__FILE__), '..', 'init')
+require 'mocha'
 
 Sinatra::Application.default_options.merge!(
   :env => :test,

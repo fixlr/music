@@ -1,5 +1,4 @@
 require File.join(File.dirname(__FILE__), 'test_helper')
-require 'mocha'
 
 class MusicHelpersTest < Test::Unit::TestCase
   def setup
