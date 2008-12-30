@@ -2,7 +2,7 @@ require 'uri'
 require 'rubygems'
 require File.join(File.dirname(__FILE__), 'lib', 'sinatra_uri_char_fix')
 require 'sinatra'
-require File.join(File.dirname(__FILE__) + 'lib', 'config')
+require File.join(File.dirname(__FILE__), 'lib', 'config')
 
 # Specify files that should be hidden from lists. i.e.: album.jpg is a special
 # file used within the UI, and should not be included in an album track list.
@@ -34,12 +34,6 @@ helpers do
   end
 end
 
-
-get '/' do
-  @entries = Dir.entries(MUSIC_BASE).reject {|e| e =~ /^\./}.sort
-  erb :index
-end
-
 get '/:artist/:album/album.jpg' do
   get_album_jpg(File.join(MUSIC_BASE, params[:artist], params[:album], 'album.jpg'))
 end
@@ -56,4 +50,9 @@ end
 get '/:artist' do
   @entries = get_entries(MUSIC_BASE + "/#{params[:artist]}")
   erb :artist
+end
+
+get '/' do
+  @entries = Dir.entries(MUSIC_BASE).reject {|e| e =~ /^\./}.sort
+  erb :index
 end
