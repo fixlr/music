@@ -11,11 +11,15 @@ require 'sinatra'
 # Defined in config.rb.  Use config.rb.example as a template.
 require File.expand_path(File.dirname(__FILE__) + '/lib/config')
 
+# Specify files that should be hidden from lists. i.e.: album.jpg is a special
+# file used within the UI, and should not be included in an album track list.
+HIDE_LIST = ['lost+found', 'album.jpg']
+
 helpers do
   # No funny business. Send 'em home if the path isn't found.
   def get_entries(path)
     redirect '/' unless File.exist? path
-    Dir.entries(path).reject {|e| e =~ /^\./}.sort
+    Dir.entries(path).reject {|e| e =~ /^\./}.sort - HIDE_LIST
   end
   
   def get_mp3(path)
@@ -52,7 +56,7 @@ get '/:artist/:album/:song' do
 end
 
 get '/:artist/:album' do
-  @entries = get_entries(MUSIC_BASE + "/#{params[:artist]}/#{params[:album]}").reject {|e| e == 'album.jpg'}
+  @entries = get_entries(MUSIC_BASE + "/#{params[:artist]}/#{params[:album]}")
   erb :album, :layout => false
 end
 
