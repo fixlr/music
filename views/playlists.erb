@@ -1,0 +1,6 @@
+<h2>Playlists</h2>
+<ul id="playlists">
+	<% @playlists.each do |p| %>
+	<li><a href="/playlists/<%= p.sub('.yaml', '') %>"><%= p.sub('.yaml', '').humanize %></a></li>
+	<% end %>
+</ul>

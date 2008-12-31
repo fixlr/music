@@ -43,6 +43,16 @@ helpers do
   end
 end
 
+get '/playlists/:playlist_name' do
+  @playlist = YAML.load(File.read(File.join(File.dirname(__FILE__), 'playlists', params[:playlist_name]+'.yaml')))
+  erb :playlist, :layout => false
+end
+
+get '/playlists' do
+  @playlists = get_entries(File.join(File.dirname(__FILE__), 'playlists'))
+  erb :playlists
+end
+
 get '/:artist/:album/:song' do
   get_mp3(MUSIC_BASE + "/#{params[:artist]}/#{params[:album]}/#{params[:song]}")
 end
