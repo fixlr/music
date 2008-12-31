@@ -30,13 +30,8 @@ helpers do
     rescue NoMethodError
       @album = OpenStruct.new(:artist => artist, 
           :name => album, 
-          :image_large => '/image/album2.jpg')
+          :image_large => '/image/album.jpg')
     end
-  end
-  
-  def get_album_jpg(path)
-    throw :halt, IO.read(File.join(File.dirname(__FILE__), 'public', 'image', 'album2.jpg')) unless File.exist? path
-    IO.read(path)
   end
   
   def title
@@ -46,10 +41,6 @@ helpers do
   def url_for(*args)
     '/' + args.map {|e| URI.escape(e) }.join('/')
   end
-end
-
-get '/:artist/:album/album.jpg' do
-  get_album_jpg(File.join(MUSIC_BASE, params[:artist], params[:album], 'album.jpg'))
 end
 
 get '/:artist/:album/:song' do
