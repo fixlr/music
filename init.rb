@@ -1,12 +1,16 @@
 require 'uri'
+require 'ostruct'
 require 'rubygems'
+require 'scrobbler'
 require File.join(File.dirname(__FILE__), 'lib', 'sinatra_uri_char_fix')
 require 'sinatra'
 require File.join(File.dirname(__FILE__), 'lib', 'config')
 
 # Specify files that should be hidden from lists. i.e.: album.jpg is a special
 # file used within the UI, and should not be included in an album track list.
-HIDE_LIST = ['lost+found', 'album.jpg']
+configure do
+  HIDE_LIST = ['lost+found', 'album.jpg']
+end
 
 helpers do
   # No funny business. Send 'em home if the path isn't found.
@@ -18,6 +22,16 @@ helpers do
   def get_mp3(path)
     throw :halt , '' unless File.exist? path
     IO.read(path)
+  end
+  
+  def get_album(artist, album)
+    begin
+      @album = Scrobbler::Album.new(artist, album, :include_info => true) 
+    rescue NoMethodError
+      @album = OpenStruct.new(:artist => artist, 
+          :name => album, 
+          :image_large => '/image/album2.jpg')
+    end
   end
   
   def get_album_jpg(path)
@@ -44,6 +58,7 @@ end
 
 get '/:artist/:album' do
   @entries = get_entries(MUSIC_BASE + "/#{params[:artist]}/#{params[:album]}")
+  @album   = get_album(params[:artist], params[:album])
   erb :album, :layout => false
 end
 
