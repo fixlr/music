@@ -8,10 +8,18 @@ body {
 	background-color: #fff;
 }
 div#album {
+	margin-top: 1.5em;
 	font-size: 14px;
 	float: right;
-	width: 250px;
+	width: 190px;
 	z-index: 1;
+}
+
+div#album img {
+	border-right: 2px solid #aaa;
+	border-bottom: 2px solid #aaa;
+	border-top: 1px solid #bbb;
+	border-left: 1px solid #bbb;
 }
 
 div#album p {
@@ -32,13 +40,13 @@ div#container {
 /*	border-right: 1px solid #ccc;
 	border-bottom: 1px solid #ccc;
 */}
-ul {
+div#container ul {
 	list-style-type: none;
 	margin: 0px;
 	padding: 0px;
 }
 
-ul li {
+div#container ul li {
 	position:relative;
 	display: block;
 	width: auto;
@@ -47,21 +55,20 @@ ul li {
 	color: #666;
 	padding: 0.25em 0.5em 0.25em 0.5em;
 	border: none;
-	letter-spacing: -1px; /* ZOMG WEB X.0. ;) */
 	background-color:#f9f9f9;
 	-webkit-transition-property: hover;
 	-webkit-transition: background-color 0.15s ease-in-out;
 }
 
-ul li:nth-of-type(1) {
+div#container ul li:nth-of-type(1) {
 	margin-top: 1em;
 }
 
-ul li:nth-of-type(odd) {
+div#container ul li:nth-of-type(odd) {
 	background-color: #f1f5fa;
 }
 
-ul li a {
+div#container ul li a {
 	display: block;
 	text-decoration: none;
 	font-weight: normal;
@@ -73,15 +80,15 @@ ul li a {
 	text-shadow: 0 0 0 #fff; /* stupid Safari "fat" font rendering tweak */
 }
 
-ul li:hover {
+div#container ul li:hover {
 	background-color: #ddd;
 }
 
-ul li:hover a {
+div#container ul li:hover a {
 	color: #333;
 }
 
-p#back {
+div#container p#back {
 	position: absolute;
 	top: 0.25em;
 	left: 0.75em;
