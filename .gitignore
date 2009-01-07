@@ -1,2 +1,2 @@
-config.rb
-sinatra.log
+config/sinatra.rb
+log/sinatra.log

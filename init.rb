@@ -4,7 +4,7 @@ require 'rubygems'
 require 'scrobbler'
 require File.join(File.dirname(__FILE__), 'lib', 'sinatra_uri_char_fix')
 require 'sinatra'
-require File.join(File.dirname(__FILE__), 'lib', 'config')
+require File.join(File.dirname(__FILE__), 'config', 'sinatra')
 
 # Specify files that should be hidden from lists. i.e.: album.jpg is a special
 # file used within the UI, and should not be included in an album track list.

@@ -7,7 +7,7 @@ Sinatra::Application.default_options.merge!(
   :env => :production
 )
 
-log = File.new("sinatra.log", "a")
+log = File.new("log/sinatra.log", "a")
 STDOUT.reopen(log)
 STDERR.reopen(log)
 
