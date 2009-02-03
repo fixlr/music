@@ -1,7 +1,6 @@
 require 'uri'
 require 'ostruct'
 require 'rubygems'
-require 'scrobbler'
 require File.join(File.dirname(__FILE__), 'lib', 'sinatra_uri_char_fix')
 require 'sinatra'
 require File.join(File.dirname(__FILE__), 'config', 'sinatra')
