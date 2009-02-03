@@ -1,0 +1,8 @@
+<% if @back %>
+<p id="back"><a href="<%= url_for(@back) %>">Back to <%= @back %></a></p>
+<% end %>
+<ul class="playlist">
+<% @entries.each do |e| %>
+	<li><a href="<%= url_for(params['splat'], e) %>"><%= e %></a></li>
+<% end %>
+</ul>

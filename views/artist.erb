@@ -1,6 +1,0 @@
-<p id="back"><a href="/">Back to Index</a></p>
-<ul>
-<% @entries.each do |album| %>
-	<li><a href="<%= url_for(params[:artist], album) %>"><%= album %></a></li>
-<% end %>
-</ul>

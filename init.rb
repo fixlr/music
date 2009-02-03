@@ -24,51 +24,21 @@ helpers do
     IO.read(path)
   end
   
-  def get_album(artist, album)
-    begin
-      @album = Scrobbler::Album.new(artist, album, :include_info => true) 
-    rescue NoMethodError
-      @album = OpenStruct.new(:artist => artist, 
-          :name => album, 
-          :image_large => '/image/album.jpg')
-    end
-  end
-  
   def title
-    ['MUSIC', params[:artist], params[:album]].compact.join(': ')
+    params['splat'].first.empty? ? 'MUSIC' : params['splat']
   end
   
   def url_for(*args)
-    '/' + args.map {|e| URI.escape(e) }.join('/')
+    '/' + args.map {|e| URI.escape("#{e}") }.join('/').sub(/^\//, '')
   end
 end
 
-get '/playlists/:playlist_name' do
-  @playlist = YAML.load(File.read(File.join(File.dirname(__FILE__), 'playlists', params[:playlist_name]+'.yaml')))
-  erb :playlist, :layout => false
+get '/*.mp3' do
+  get_mp3(MUSIC_BASE+ "/#{params['splat'].first}.mp3")
 end
 
-get '/playlists' do
-  @playlists = get_entries(File.join(File.dirname(__FILE__), 'playlists'))
-  erb :playlists
-end
-
-get '/:artist/:album/:song' do
-  get_mp3(MUSIC_BASE + "/#{params[:artist]}/#{params[:album]}/#{params[:song]}")
-end
-
-get '/:artist/:album' do
-  @entries = get_entries(MUSIC_BASE + "/#{params[:artist]}/#{params[:album]}")
-  @album   = get_album(params[:artist], params[:album])
-  erb :album, :layout => false
-end
-
-get '/:artist' do
-  @entries = get_entries(MUSIC_BASE + "/#{params[:artist]}")
-  erb :artist
-end
-
-get '/' do
-  @entries = Dir.entries(MUSIC_BASE).reject {|e| e =~ /^\./}.sort
-  erb :index
+get '/*' do
+  @entries = get_entries(MUSIC_BASE+ "/#{params['splat']}")
+  @back = params['splat'].first.empty? ? nil : File.dirname("/#{params['splat']}")
+  erb :listing
 end
