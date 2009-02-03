@@ -37,23 +37,18 @@ class MusicHelpersTest < Test::Unit::TestCase
     # halt if 404
   end
 
-  test 'get_album_jpg' do
-    # return the contents of album.jpg
-    # return default album2.jpg if 404
-  end
-
   test 'title for index' do
-    @context.request.expects(:params).returns({})
+    @context.request.expects(:params).returns({'splat' => ['']})
     assert_equal 'MUSIC', @context.title
   end
   
-  test 'title for artist' do
-    @context.request.expects(:params).returns({:artist => 'Foo'})
-    assert_equal 'MUSIC: Foo', @context.title
+  test 'title for music path' do
+    @context.request.expects(:params).returns({'splat' => ['Foo']})
+    assert_equal ['Foo'], @context.title
   end
 
-  test 'title for artist/album' do
-    @context.request.expects(:params).returns({:artist => 'Foo', :album => 'Bar'})
-    assert_equal 'MUSIC: Foo: Bar', @context.title
+  test 'title for artist album music path' do
+    @context.request.expects(:params).returns({'splat' => ['Foo/Bar']})
+    assert_equal ['Foo/Bar'], @context.title
   end
 end

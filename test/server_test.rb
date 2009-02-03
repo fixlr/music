@@ -32,7 +32,7 @@ class MusicServerTest < Test::Unit::TestCase
     assert_equal 200, @response.status
     assert_equal get_entries(MUSIC_BASE + '/Foo/Bar').to_s, @response.body
   end
-
+  
   test 'get an /artist/album with funky characters' do
     funky_uri = URI.escape '/&,.#/&,.#'
     get_it funky_uri
