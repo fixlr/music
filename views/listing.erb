@@ -1,5 +1,5 @@
 <% if @back %>
-<p id="back"><a href="<%= url_for(@back) %>">Back to <%= @back %></a></p>
+<p id="back"><a class="exclude" href="<%= url_for(@back) %>">Back to <%= @back %></a></p>
 <% end %>
 <ul class="playlist">
 <% @entries.each do |e| %>
