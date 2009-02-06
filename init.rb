@@ -8,7 +8,7 @@ require File.join(File.dirname(__FILE__), 'config', 'sinatra')
 # Specify files that should be hidden from lists. i.e.: album.jpg is a special
 # file used within the UI, and should not be included in an album track list.
 configure do
-  HIDE_LIST = ['lost+found', 'album.jpg']
+  HIDE_LIST = ['lost+found', 'album.jpg', 'iTunes']
 end
 
 helpers do
