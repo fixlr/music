@@ -48,7 +48,7 @@ class MusicServerTest < Test::Unit::TestCase
   end
   
   test 'get on /artist/album/file.mp3 exists' do
-    get_it '/Foo/Bar/test.mp3'
+    get_it '/library/Foo/Bar/test.mp3'
     assert_equal 'Hello world', @response.body
     assert_equal 200, @response.status
   end

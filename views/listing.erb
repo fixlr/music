@@ -3,6 +3,6 @@
 <% end %>
 <ul class="playlist">
 <% @entries.each do |e| %>
-	<li><a<%= ' class="exclude"' unless e.downcase =~ /\.mp3$/ %> href="<%= url_for(params['splat'], e) %>"><%= e %></a></li>
+	<li><a<%= ' class="exclude"' unless e.downcase =~ /\.mp3$/ %> href="<%= url_for(params['splat'], e) %>"><%= e.sub(/\.mp3$/i, '') %></a></li>
 <% end %>
 </ul>

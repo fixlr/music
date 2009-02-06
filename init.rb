@@ -28,11 +28,11 @@ helpers do
   end
   
   def url_for(*args)
-    '/' + args.map {|e| URI.escape("#{e}") }.join('/').sub(/^\//, '')
+    (args.last.downcase =~ /\.mp3$/ ? '/library/' : '/') + args.map {|e| URI.escape("#{e}") }.join('/').sub(/^\//, '')
   end
 end
 
-get '/*.mp3' do
+get '/library/*.mp3' do
   get_mp3(MUSIC_BASE+ "/#{params['splat'].first}.mp3")
 end
 

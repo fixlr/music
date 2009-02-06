@@ -11,9 +11,9 @@ class MusicHelpersTest < Test::Unit::TestCase
   test 'url_for' do
     assert_equal '/Foo%20Bar', @context.url_for("Foo Bar")
     assert_equal '/Foo/Bar', @context.url_for("Foo", "Bar")
-    assert_equal '/Foo/Bar/test.mp3', @context.url_for('Foo', 'Bar', 'test.mp3')
+    assert_equal '/library/Foo/Bar/test.mp3', @context.url_for('Foo', 'Bar', 'test.mp3')
   end
-
+  
   test 'get_entries alpha sorts results' do
     Dir.expects(:entries).returns(['c', 'b', 'a'])
     assert_equal 'a', @context.get_entries('/').first
@@ -26,17 +26,17 @@ class MusicHelpersTest < Test::Unit::TestCase
     assert_equal ['a'], entries
     assert_nil entries.find {|e| e =~ /^\./ }
   end
-
+  
   test 'get_entries not found' do
     # It should redirect if a path is not found
     # @context.get_entries(MUSIC_BASE + '/Nothing')
   end
-
+  
   test 'get_mp3' do
     assert_equal 'Hello world', @context.get_mp3(MUSIC_BASE + '/Foo/Bar/test.mp3')
     # halt if 404
   end
-
+  
   test 'title for index' do
     @context.request.expects(:params).returns({'splat' => ['']})
     assert_equal 'MUSIC', @context.title
@@ -46,7 +46,7 @@ class MusicHelpersTest < Test::Unit::TestCase
     @context.request.expects(:params).returns({'splat' => ['Foo']})
     assert_equal ['Foo'], @context.title
   end
-
+  
   test 'title for artist album music path' do
     @context.request.expects(:params).returns({'splat' => ['Foo/Bar']})
     assert_equal ['Foo/Bar'], @context.title
